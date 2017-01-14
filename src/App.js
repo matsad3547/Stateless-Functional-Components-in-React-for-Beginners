@@ -15,10 +15,11 @@ class App extends Component {
     super()
     this.addTodo = this.addTodo.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
+    this.setVisibilityFilter = this.setVisibilityFilter.bind(this);
   }
   state = {
     todos: [],
-    visiblityFilter: "SHOW_ALL",
+    visibilityFilter: "SHOW_ALL",
   }
 
   addTodo(input) {
@@ -52,9 +53,10 @@ class App extends Component {
     })
   }
 
+  //if you forget to bind, your function won't work!
   setVisibilityFilter(filter) {
     this.setState({
-      visiblityFilter: filter,
+      visibilityFilter: filter,
     })
   }
 
@@ -66,9 +68,11 @@ class App extends Component {
           />
         <VisibleTodoList
           todos={this.state.todos}
+          visibilityFilter={this.state.visibilityFilter}
           toggleTodo={this.toggleTodo}
           />
-        <Footer />
+        <Footer
+          setVisibilityFilter={this.setVisibilityFilter}/>
       </div>
     );
   }
@@ -100,9 +104,25 @@ class AddTodo extends Component {
 //   </div>
 // )
 
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case 'SHOW_ALL':
+    return todos
+    case 'SHOW_ACTIVE':
+    return todos.filter( t => !t.completed )
+    case 'SHOW_COMPLETED':
+    return todos.filter( t => t.completed )
+    default:
+    throw new Error('Unknown filter:', filter)
+  }
+}
+
 class VisibleTodoList extends Component {
+
   render () {
-    const todos = this.props.todos
+
+    const filter = this.props.visibilityFilter
+    const todos = getVisibleTodos(this.props.todos, filter)
     const toggleTodo = this.props.toggleTodo
 
     return (
@@ -121,10 +141,14 @@ class VisibleTodoList extends Component {
 }
 
 class Todo extends Component {
+
   render () {
+
     const text = this.props.text
     const completed = this.props.completed
     const onClick = this.props.onClick
+
+    // const { text, completed, onClick } = this.props
 
     return (
       <li
@@ -136,6 +160,8 @@ class Todo extends Component {
   }
 }
 
+
+
 // const VisibleTodoList = () => (
 //   <div>
 //     <ul>
@@ -144,8 +170,44 @@ class Todo extends Component {
 //   </div>
 // )
 
-const Footer = () => (
-  <div>
-    <h2>Filter Links will go here</h2>
-  </div>
-)
+// const Footer = () => (
+//   <div>
+//     <h2>Filter Links will go here</h2>
+//   </div>
+// )
+
+class Footer extends Component {
+  render() {
+    const setVisibilityFilter = this.props.setVisibilityFilter
+    return (
+      <p>
+        show:
+        <FilterLink filter="SHOW_ALL" onClick={setVisibilityFilter} >
+          All
+        </FilterLink>
+        {', '}
+        <FilterLink filter="SHOW_ACTIVE" onClick={setVisibilityFilter} >
+          Active
+        </FilterLink>
+        {', '}
+        <FilterLink filter="SHOW_COMPLETED" onClick={setVisibilityFilter} >
+          Completed
+        </FilterLink>
+      </p>
+    )
+  }
+}
+
+const FilterLink = ({ onClick, filter, children }) => {
+
+  return (
+
+    <a href="#"
+      onClick={ e => {
+        e.preventDefault()
+        onClick(filter)
+      }}>
+      {children}
+    </a>
+  )
+}
