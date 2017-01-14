@@ -1,4 +1,7 @@
 #React Stateless Function Components
+
+If you would like to follow along with this presentation, please fork and clone this repo, run `$ npm install`, and when that finishes, run `$ npm start`.  This way, you will be able to see your changes live.
+
 This repo contains a todo app ([modeled after this one]https://github.com/reactjs/redux/tree/master/examples/todos) both with standard React "class" components and a second version where state is lifted up and passed as props to the relative components.  
 
 When learning React, I learned about stateless functional components (hereafter SFC's) on my own and it took me a little while to understand their power.  I find them much simpler and easier to use.  Plus they are _just_ functions!
