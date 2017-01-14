@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AddTodo, VisibleTodoList, Footer} from './classComponents'
+// import { AddTodo, VisibleTodoList, Footer} from './classComponents'
+import { AddTodo, VisibleTodoList, Footer} from './statelessFunctionalComponents'
 
 //how I like to start:
 

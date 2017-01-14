@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { getVisibleTodos } from './helperFunctions'
 
 // export class AddTodo extends Component {
 //
@@ -59,26 +60,13 @@ export class AddTodo extends Component {
   }
 }
 
-const getVisibleTodos = (todos, filter) => {
-  switch (filter) {
-    case 'SHOW_ALL':
-    return todos
-    case 'SHOW_ACTIVE':
-    return todos.filter( t => !t.completed )
-    case 'SHOW_COMPLETED':
-    return todos.filter( t => t.completed )
-    default:
-    throw new Error('Unknown filter:', filter)
-  }
-}
-
 export class VisibleTodoList extends Component {
 
   render () {
 
     const filter = this.props.visibilityFilter
-    const todos = getVisibleTodos(this.props.todos, filter)
     const toggleTodo = this.props.toggleTodo
+    const todos = getVisibleTodos(this.props.todos, filter)
 
     return (
       <div>
@@ -158,17 +146,3 @@ class FilterLink extends Component {
     )
   }
 }
-
-// const FilterLink = ({ onClick, filter, children }) => {
-//
-//   return (
-//
-//     <a href="#"
-//       onClick={ e => {
-//         e.preventDefault()
-//         onClick(filter)
-//       }}>
-//       {children}
-//     </a>
-//   )
-// }
