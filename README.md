@@ -10,6 +10,8 @@ When learning React, I learned about stateless functional components (hereafter 
 ####Definitions:
 [Functional Components vs. Stateless Functional Components vs. Stateless Components - Tyler McGinnis] (https://tylermcginnis.com/functional-components-vs-stateless-functional-components-vs-stateless-components/)
 
+[Components and Props - React Docs] (https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components)
+
 ####When to use SFC's:
 [Presentation and Container Components - Dan Abramov] (https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.2v3gx51ga)
 

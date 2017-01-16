@@ -1,64 +1,64 @@
 import React, { Component } from 'react'
 import { getVisibleTodos } from './helperFunctions'
 
-// export class AddTodo extends Component {
-//
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={ e => {
-//             e.preventDefault()
-//             this.props.addTodo(this.input.value)
-//             this.input.value = ''
-//           }}>
-//           <input type="text" ref={ (input) => this.input = input }></input>
-//           <button type="submit" >Add Todo</button>
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-//more React-y way to do this - controlled component
 export class AddTodo extends Component {
-
-  constructor(props) {
-    super(props)
-    this.handleOnChange = this.handleOnChange.bind(this)
-    this.handleOnSubmit = this.handleOnSubmit.bind(this)
-  }
-  state = {
-    newTodo: '',
-  }
-
-  handleOnChange(e) {
-    let newTodo = e.target.value
-    this.setState({
-      newTodo,
-    })
-  }
-
-  handleOnSubmit(e) {
-    e.preventDefault()
-        this.props.addTodo(this.state.newTodo)
-    this.setState({
-      newTodo: '',
-    })
-  }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleOnSubmit}>
-          <input type="text"
-            value={this.state.newTodo}
-            onChange={this.handleOnChange}></input>
+        <form onSubmit={ e => {
+            e.preventDefault()
+            this.props.addTodo(this.input.value)
+            this.input.value = ''
+          }}>
+          <input type="text" ref={ (input) => this.input = input }></input>
           <button type="submit" >Add Todo</button>
         </form>
       </div>
     )
   }
 }
+
+//more React-y way to do this - controlled component
+// export class AddTodo extends Component {
+//
+//   constructor(props) {
+//     super(props)
+//     this.handleOnChange = this.handleOnChange.bind(this)
+//     this.handleOnSubmit = this.handleOnSubmit.bind(this)
+//   }
+//   state = {
+//     newTodo: '',
+//   }
+//
+//   handleOnChange(e) {
+//     let newTodo = e.target.value
+//     this.setState({
+//       newTodo,
+//     })
+//   }
+//
+//   handleOnSubmit(e) {
+//     e.preventDefault()
+//         this.props.addTodo(this.state.newTodo)
+//     this.setState({
+//       newTodo: '',
+//     })
+//   }
+//
+//   render() {
+//     return (
+//       <div>
+//         <form onSubmit={this.handleOnSubmit}>
+//           <input type="text"
+//             value={this.state.newTodo}
+//             onChange={this.handleOnChange}></input>
+//           <button type="submit" >Add Todo</button>
+//         </form>
+//       </div>
+//     )
+//   }
+// }
 
 export class VisibleTodoList extends Component {
 
@@ -88,12 +88,12 @@ class Todo extends Component {
   render () {
 
     //this messiness can be replaced by...
-    const text = this.props.text
-    const completed = this.props.completed
-    const onClick = this.props.onClick
+    // const text = this.props.text
+    // const completed = this.props.completed
+    // const onClick = this.props.onClick
 
     //this - through the power of destructuring
-    // const { text, completed, onClick } = this.props
+    const { text, completed, onClick } = this.props
 
     return (
       <li

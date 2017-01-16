@@ -3,13 +3,19 @@ import React, { Component } from 'react';
 import { AddTodo, VisibleTodoList, Footer} from './statelessFunctionalComponents'
 
 //how I like to start:
-
+// 
 // const App = () => (
 //   <div>
 //     <h1>This is a To-Do app</h1>
 //     <AddTodo />
 //     <VisibleTodoList />
 //     <Footer />
+//   </div>
+// )
+//
+// const AddTodo = () => (
+//   <div>
+//     <h1>This is the add todo component</h1>
 //   </div>
 // )
 
