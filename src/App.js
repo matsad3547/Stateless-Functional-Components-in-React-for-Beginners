@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AddTodo, VisibleTodoList, Footer} from './statelessFunctionalComponents'
 
 //how I like to start:
-// 
+//
 // const App = () => (
 //   <div>
 //     <h1>This is a To-Do app</h1>
@@ -20,18 +20,13 @@ import { AddTodo, VisibleTodoList, Footer} from './statelessFunctionalComponents
 // )
 
 class App extends Component {
-  constructor() {
-    super()
-    this.addTodo = this.addTodo.bind(this);
-    this.toggleTodo = this.toggleTodo.bind(this);
-    this.setVisibilityFilter = this.setVisibilityFilter.bind(this);
-  }
+
   state = {
     todos: [],
     visibilityFilter: "SHOW_ALL",
   }
 
-  addTodo(input) {
+  addTodo = input => {
     const text = input
     const currentTodos = [...this.state.todos]
     let id
@@ -52,7 +47,7 @@ class App extends Component {
 
     }
 
-  toggleTodo(id) {
+  toggleTodo = id => {
     let todos = this.state.todos
     const todo = todos.find( todo => todo.id === id )
     if (todo.completed) todo.completed = false
@@ -63,7 +58,7 @@ class App extends Component {
   }
 
   //if you forget to bind, your function won't work!
-  setVisibilityFilter(filter) {
+  setVisibilityFilter = filter => {
     this.setState({
       visibilityFilter: filter,
     })
